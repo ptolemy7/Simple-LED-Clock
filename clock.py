@@ -214,7 +214,7 @@ while True:
 #This next bit means that it only updates quarters of the
 #Display that have actually changed, since the loop starts 
 #again every second
-	if hr_old < hr_actual or (hr_old == 11):
+	if hr_old < hr_actual or (hr_old == 11 and mn > 55 and sec > 55):
 		print_digit(digit(hr,2),15,7,b,go[0])
 		print_digit(digit(hr,1),11,7,b,go[1])
 		if digit(hr_old,2,)<digit(hr,2):
