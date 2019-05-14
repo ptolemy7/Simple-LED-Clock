@@ -8,9 +8,15 @@ import datetime
 from datetime import datetime
 i2c = busio.I2C(board.SCL, board.SDA)
 display = adafruit_is31fl3731.CharlieBonnet(i2c)
+#The following controls how fast any pixel marked
+#as blink=True will blink
 display.blink(2000)
+#This is so that all of the numbers may be broken up into sections 
+#that are 3(horrizontal) or 4(vertical) pixels long
 def bit(x,y,b,orr):
-#1:horrizontal, 0 vertical
+#x,y: the initial coordinates for the start of the line
+#b: the brightness of the pixel (controlled by the bright() function
+#orr: orientation, 1:horrizontal, 0 vertical
 	if (orr == 0):
 		display.pixel(x,y,b)
 		display.pixel(x,y-1,b)
@@ -22,6 +28,10 @@ def bit(x,y,b,orr):
 		display.pixel(x-2,y,b)
 
 def digit(num, place):
+#This funciton takes a 1 or 2 digit number and seperates the number
+#into its constituent digits, where place is whether the 1st or 2nd 
+#place after the decimal(from right to left) e.g. in '14' 1 is the 
+#2nd digit where 4 is the 1st
 	if (num < 10):
 		if (place == 1):
 			return num
@@ -33,6 +43,18 @@ def digit(num, place):
 		else:
 			return int(num/10)
 def print_digit(digit,x,y,b,go):
+#This functions takes a single digit number(digit), a point(x,y)
+#a brightness(b), and go, which is either 1 or 0, and is used
+#to tell whether or not the clock was just turned out, because 
+#to help with efficiency (at least that is the idea), every 
+#time a number becomes a new number, the new numer only changes 
+#the pixels that are different(either on or off, where off, as I
+#soon learned, is always necessary). Only if the number called is the 
+#first number to be drawn by the clock(i.e. after a reboot) will all 
+#the necessary calls be made. These calls are also broken up into the
+#3/4-pixel long segments from earlier. Order matters, pixels MUST be 
+#turned off before any are turned on, or else you might have some 
+#strange holes in your numbers(you have been warned)
 	if (digit == 1):
 		bit(x - 1,y,0,0)
 		bit(x,y,0,1)
@@ -120,6 +142,11 @@ def print_digit(digit,x,y,b,go):
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,0)
 def bright(hr):
+#Personal prefference here for the brightness, merely
+#saying that if it is either before 10AM or after 10PM,
+#it should be darker than the rest of the time(found 
+#that particular descision rather annoying this morning
+#when I woke up at 11 to a blinding clock
     if (hr < 10):
         return 1
     elif (hr > 20):
@@ -127,21 +154,27 @@ def bright(hr):
     else:
         return 10
 def pm(hr,b):
+#Funciton to determin if it is AM or PM, and turn a pixel 
+#in the corner off (AM) or on (PM) respectively
     if (hr > 12):
         display.pixel(0,0,b)
     else:
         display.pixel(0,0,0)
-def bblink(s,b):
-	q =  int(s/5)
-	#print(q,s)
-	#for x in (16-q,16):
-#		display.pixel(x,0,b,blink=True)
-#	for x in (3,q+3):
-#		display.pixel(x,0,0)
-
-
-
+def hr_display(hr):
+#This is to make sure that the hour makes sense
+#At noon and midnight, making noon read '12' 
+#and midnight'00', again personal preference,
+#an 'or' could easily be added to make midnight
+#read 12
+	if hr == 12:
+		return 12
+	else:
+		return (hr % 12)
+##############################################
+###########End of function deffinitions#######
 count = 0
+#Count is outside of the while loop so it does not 
+#get reset every second
 while True:
 	if count > 0:
 		hr_old = hr
@@ -155,14 +188,20 @@ while True:
 	go2 = 0
 	go3 = 0
 	go4 = 0
+#These 3 are purely shorthand because I am rather lazy
 	hr = datetime.now().hour
 	mn = datetime.now().minute
 	sec = datetime.now().second
+#Determine the brightness
 	b = bright(hr)
-	bblink(sec,b)
+#Is it AM or PM?
 	pm(hr,b)
-	hr = (hr % 12)
-	if hr_old < hr:
+#Makes sure the hour isn't funny looking
+	hr = hour(hr)
+#This next bit means that it only updates quarters of the
+#Display that have actually changed, since the loop starts 
+#again every second
+	if hr_old < hr or hr_old == 11:
 		print_digit(digit(hr,2),15,7,b,go1)
 		print_digit(digit(hr,1),11,7,b,go2)
 		if digit(hr_old,2)>digit(hr,2):
