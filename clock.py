@@ -201,20 +201,21 @@ while True:
 #This next bit means that it only updates quarters of the
 #Display that have actually changed, since the loop starts 
 #again every second
-	if hr_old < hr or hr_old == 11:
-		print_digit(digit(hr,2),15,7,b,go1)
-		print_digit(digit(hr,1),11,7,b,go2)
-		if digit(hr_old,2)>digit(hr,2):
-			go1 = go1 + 1
-		if digit(hr_old,1)>digit(hr,1):
-			go2 = go2 + 1
-	if mn_old < mn or mn_old == 59:
-		print_digit(digit(mn,2),6,7,b,go3)
-		print_digit(digit(mn,1),2,7,b,go4)
-		if digit(mn_old,1)>digit(mn,1):
-			go3 = go3 + 1
-		if digit(mn_old,2)>digit(mn,2):
-			go4 = go4 + 1
+	if sec >=55:
+		if hr_old < hr or (hr_old == 11):
+			print_digit(digit(hr,2),15,7,b,go1)
+			print_digit(digit(hr,1),11,7,b,go2)
+			if digit(hr_old,2)>digit(hr,2):
+				go1 = go1 + 1
+			if digit(hr_old,1)>digit(hr,1):
+				go2 = go2 + 1
+		if mn_old < mn or (mn_old == 59):
+			print_digit(digit(mn,2),6,7,b,go3)
+			print_digit(digit(mn,1),2,7,b,go4)
+			if digit(mn_old,1)>digit(mn,1):
+				go3 = go3 + 1
+			if digit(mn_old,2)>digit(mn,2):
+				go4 = go4 + 1
 	if count == 0:
 		count = 1
 	time.sleep(1)
