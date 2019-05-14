@@ -1,0 +1,8 @@
+[Unit]
+Description=Start Clock
+
+[Timer]
+OnBootSec=1
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Start Clock
+
+[Install]
+WantedBy=clock.timer
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/clock
