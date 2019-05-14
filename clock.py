@@ -197,7 +197,7 @@ while True:
 #Is it AM or PM?
 	pm(hr,b)
 #Makes sure the hour isn't funny looking
-	hr = hour(hr)
+	hr = hr_display(hr)
 #This next bit means that it only updates quarters of the
 #Display that have actually changed, since the loop starts 
 #again every second
