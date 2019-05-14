@@ -160,6 +160,20 @@ def pm(hr,b):
         display.pixel(0,0,b)
     else:
         display.pixel(0,0,0)
+def sblinker(sec):
+	q = int(sec/5)
+	z = 0
+	for z in range(5,16):
+		if z in range(15-q,16):
+			if z == (15-q):
+				display.pixel(z,0,b,blink=True)
+			else:
+				display.pixel(z,0,b,blink=False)
+		else:
+			display.pixel(z,0,0)
+		if z == (15-q):
+			display.pixel(z,0,b,blink=True)
+	
 def hr_display(hr):
 #This is to make sure that the hour makes sense
 #At noon and midnight, making noon read '12' 
@@ -184,10 +198,7 @@ while True:
 		hr_old = -1
 		mn_old = -1
 		sec_old = -1
-	go1 = 0
-	go2 = 0
-	go3 = 0
-	go4 = 0
+	go=[0,0,0,0]
 #These 3 are purely shorthand because I am rather lazy
 	hr = datetime.now().hour
 	mn = datetime.now().minute
@@ -199,23 +210,24 @@ while True:
 #Makes sure the hour isn't funny looking
 	hr_actual = hr
 	hr = hr_display(hr)
+	sblinker(sec)
 #This next bit means that it only updates quarters of the
 #Display that have actually changed, since the loop starts 
 #again every second
 	if hr_old < hr_actual or (hr_old == 11):
-		print_digit(digit(hr,2),15,7,b,go1)
-		print_digit(digit(hr,1),11,7,b,go2)
-		if digit(hr_old,2)>digit(hr,2):
-			go1 = go1 + 1
-		if digit(hr_old,1)>digit(hr,1):
-			go2 = go2 + 1
+		print_digit(digit(hr,2),15,7,b,go[0])
+		print_digit(digit(hr,1),11,7,b,go[1])
+		if digit(hr_old,2,)<digit(hr,2):
+			go[0]=1
+		if digit(hr_old,1,)<digit(hr,1):
+			go[1]=1
 	if mn_old < mn or (mn_old == 59):
-		print_digit(digit(mn,2),6,7,b,go3)
-		print_digit(digit(mn,1),2,7,b,go4)
-		if digit(mn_old,1)>digit(mn,1):
-			go3 = go3 + 1
-		if digit(mn_old,2)>digit(mn,2):
-			go4 = go4 + 1
+		print_digit(digit(mn,2),6,7,b,go[2])
+		print_digit(digit(mn,1),2,7,b,go[3])
+		if digit(mn_old,2,)<digit(mn,2):
+			go[2]=1
+		if digit(mn_old,1,)<digit(mn,1):
+			go[3]=1
 	if count == 0:
 		count = 1
-	time.sleep(1)
+	time.sleep(2)
