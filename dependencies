@@ -3,6 +3,5 @@ Dependenies:
 	python3
 	python3-pip3
 	Pyton Modules:
-	RPI.GPIO
-	Adafruit-Circuit-Pythonis31fl3731
+	Adafruit-CircuitPython-is31fl3731
 
