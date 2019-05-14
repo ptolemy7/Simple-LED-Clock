@@ -197,11 +197,12 @@ while True:
 #Is it AM or PM?
 	pm(hr,b)
 #Makes sure the hour isn't funny looking
+	hr_actual = hr
 	hr = hr_display(hr)
 #This next bit means that it only updates quarters of the
 #Display that have actually changed, since the loop starts 
 #again every second
-	if hr_old < hr or (hr_old == 11):
+	if hr_old < hr_actual or (hr_old == 11):
 		print_digit(digit(hr,2),15,7,b,go1)
 		print_digit(digit(hr,1),11,7,b,go2)
 		if digit(hr_old,2)>digit(hr,2):
