@@ -10,6 +10,10 @@ make_link clock_off.py /usr/local/sbin/
 cd system_files
 make_link clock.service /etc/systemd/system/
 make_link clock.timer /etc/systemd/system/
+##enables the timer
 systemctl enable clock.timer
-
-
+cd ../install_files/
+##installs all of the dependencies, python3 and python3-pip, and the python dependencies
+apt update
+apt install $(cat dependencies.system) --yes
+pip3 install $(cat dependencies.python)
