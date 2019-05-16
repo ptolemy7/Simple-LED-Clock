@@ -210,7 +210,7 @@ while True:
 #Makes sure the hour isn't funny looking
 	hr_actual = hr
 	hr = hr_display(hr)
-	sblinker(sec)
+	#sblinker(sec)
 #This next bit means that it only updates quarters of the
 #Display that have actually changed, since the loop starts 
 #again every second
