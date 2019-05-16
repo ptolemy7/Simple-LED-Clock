@@ -160,19 +160,19 @@ def pm(hr,b):
         display.pixel(0,0,b)
     else:
         display.pixel(0,0,0)
-def sblinker(sec):
+def sblinker(sec,b):
 	q = int(sec/5)
 	z = 0
 	for z in range(5,16):
 		if z in range(15-q,16):
 			if z == (15-q):
-				display.pixel(z,0,b,blink=True)
+				display.pixel(z,0,b)
 			else:
-				display.pixel(z,0,b,blink=False)
+				display.pixel(z,0,b)
 		else:
 			display.pixel(z,0,0)
 		if z == (15-q):
-			display.pixel(z,0,b,blink=True)
+			display.pixel(z,0,b)
 	
 def hr_display(hr):
 #This is to make sure that the hour makes sense
@@ -210,7 +210,7 @@ while True:
 #Makes sure the hour isn't funny looking
 	hr_actual = hr
 	hr = hr_display(hr)
-	#sblinker(sec)
+	sblinker(sec,b)
 #This next bit means that it only updates quarters of the
 #Display that have actually changed, since the loop starts 
 #again every second
