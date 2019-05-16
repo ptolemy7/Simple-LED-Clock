@@ -66,6 +66,14 @@ def print_digit(digit,x,y,b,go):
 		bit(x-1,y-3,b,0)
 		bit(x-1,y,b,0)
 	elif (digit == 2):
+		bit(x - 1,y,0,0)
+		bit(x,y,0,1)
+		bit(x,y,0,0)
+		bit(x-2,y-3,0,0)
+		bit(x,y-6,0,1)
+		bit(x-2,y,0,0)
+		bit(x,y-3,0,0)
+		
 		bit(x-1,y-3,0,0)
 		bit(x-1,y,0,0)
 		bit(x,y,b,1)
@@ -133,6 +141,8 @@ def print_digit(digit,x,y,b,go):
 			bit(x,y,b,0)
 			bit(x-2,y-3,b,0)
 	else:
+		bit(x-1,y,0,0,0)
+		bit(x-1,y-3,0,0)
 		bit(x,y-3,0,1)
 		if go == 0:
 			bit(x,y,b,1)
