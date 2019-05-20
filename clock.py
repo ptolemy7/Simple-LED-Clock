@@ -11,7 +11,7 @@ import datetime
 from datetime import datetime
 i2c = busio.I2C(board.SCL, board.SDA)
 #Change what the screen is here for whichever screen you have
-scren = adafruit_is31fl3731.CharlieBonnet(i2c)	
+screen = adafruit_is31fl3731.CharlieBonnet(i2c)	
 
 
 #This is so that all of the numbers may be broken up into sections 
