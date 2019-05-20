@@ -86,7 +86,7 @@ def screen_print(num,x,y,b):
 		bit(x,y-3,0,1)
 		bit(x,y-6,0,1)
 		bit(x-1,y,b,0)
-		bit(x-1,y,b,0)
+		bit(x-1,y-3,b,0)
 	elif(num == 2):
 		bit(x-1,y,0,0)
 		bit(x-1,y-3,0,0)
@@ -104,7 +104,6 @@ def screen_print(num,x,y,b):
 		bit(x-2,y-3,b,0)
 	elif(num == 4):	
 		bit(x,y,0,1)
-		bit(x,y-3,0,1)
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
