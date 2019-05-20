@@ -76,7 +76,7 @@ def pm(hr,b):
 	else:
 		screen.pixel(0,0,0)
 
-def screen_print(num,x,y,b,go):
+def screen_print(num,x,y,b):
 	if(num == 1):
 		bit(x,y,0,0)
 		bit(x,y-3,0,0)
@@ -88,7 +88,6 @@ def screen_print(num,x,y,b,go):
 		bit(x-1,y,b,0)
 		bit(x-1,y,b,0)
 	elif(num == 2):
-#	if(go != 0):
 		bit(x-1,y,0,0)
 		bit(x-1,y-3,0,0)
 		bit(x,y,b,1)
@@ -97,87 +96,67 @@ def screen_print(num,x,y,b,go):
 		bit(x,y-3,b,0)
 		bit(x,y-6,b,1)
 	elif(num == 3):
-#if(go != 0):
 		bit(x,y-3,0,0)
-#else:
 		bit(x,y,b,1)
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
 		bit(x,y-6,b,1)
 		bit(x-2,y-3,b,0)
-	elif(num == 4):
-#if(go != 0):
-		bit(x,y,0,1)
+	elif(num == 4)	bit(x,y,0,1)
 		bit(x,y-3,0,1)
-#else:
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,0)
 	elif(num == 5):
-#if(go != 0):
 		bit(x-2,y,0,0)
-#else:
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,0)
 		bit(x,y,b,1)
 		bit(x,y-6,b,1)
 	elif(num == 6):
-#if(go !=0 ):
 		bit(x,y,0,1)
-#else:
-		bit(x,y-6,b,1)
+			bit(x,y-6,b,1)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,0)
 		bit(x,y-3,b,0)
 	elif(num == 7):
-#if(go != 0):
 		bit(x,y,0,0)
 		bit(x,y-3,0,0)
 		bit(x,y-6,0,1)
 		bit(x,y-3,0,1)
-#else:
-		bit(x-2,y-3,b,0)
+			bit(x-2,y-3,b,0)
 		bit(x,y,b,1)
 		bit(x-2,y,b,0)
 	elif(num == 8):
-#if(go == 0):
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,1)
 		bit(x-2,y,b,0)
-#else:
 		bit(x,y,b,0)
 		bit(x,y-3,b,0)
 		bit(x,y-3,b,1)
 		bit(x,y-6,b,1)
 	elif(num == 9):
-#if(go != 0):
 		bit(x,y-3,0,0)
 		bit(x,y-6,0,1)
-#else:
 		bit(x,y,b,1)
 		bit(x,y,b,0)
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
 	elif(num == 0):
-#if(go != 0):
 		bit(x-1,y,0,0)
 		bit(x-1,y-3,0,0)
 		bit(x,y-3,0,1)
-#else:
 		bit(x,y,b,1)
 		bit(x,y,b,0)
 		bit(x-2,y,b,0)
 		bit(x-2,y-3,b,0)
 		bit(x,y-3,b,0)
 		bit(x,y-6,b,1)
-
-
-
-go=0
+go = 0
 while True:
 	if go > 0:
 		for i in range(0,3):
@@ -197,8 +176,8 @@ while True:
 	X=[15,6,11,2]	
 	for i in range(0,2):
 		if(clock[i]>time_old[i] or ( i == 0 and time_old[i] == 11)):
-			screen_print(digit(clock[i],2),X[i],7,b,go)
-			screen_print(digit(clock[i],1),X[i+2],7,b,go)
+			screen_print(digit(clock[i],2),X[i],7,b)
+			screen_print(digit(clock[i],1),X[i+2],7,b)
 	if(go == 0):
 		go = 1
 	time.sleep(1)
