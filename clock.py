@@ -99,19 +99,19 @@ def screen_print(num,x,y,b,go):
 		bit(x,y-3,b,0)
 		bit(x,y-6,b,1)
 	elif(num == 3):
-if(go != 0):
-		bit(x,y-3,0,0)
-else:
-		bit(x,y,b,1)
-		bit(x-2,y,b,0)
-		bit(x,y-3,b,1)
+		if(go != 0):
+			bit(x,y-3,0,0)
+		else:
+			bit(x,y,b,1)
+			bit(x-2,y,b,0)
+			bit(x,y-3,b,1)
 		bit(x,y-6,b,1)
 		bit(x-2,y-3,b,0)
 	elif(num == 4):
-if(go != 0):
-		bit(x,y,0,1)
-		bit(x,y-3,0,1)
-	else:
+		if(go != 0):
+			bit(x,y,0,1)
+			bit(x,y-3,0,1)
+		else:
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
@@ -179,7 +179,8 @@ else:
 
 
 
-go=0
+go = 0
+
 while True:
 	if go > 0:
 		for i in range(0,3):
