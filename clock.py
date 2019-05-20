@@ -9,7 +9,7 @@ import adafruit_is31fl3731
 import datetime
 #The following is to shorten what would be datetime.datetime.now()
 from datetime import datetime
-i2c = busio.I2C(board.SCL, board.SDA)
+i2c = busio.I2C(board.SCL, board.SDA
 #Change what the screen is here for whichever screen you have
 screen = adafruit_is31fl3731.CharlieBonnet(i2c)
 	
@@ -119,6 +119,7 @@ def screen_print(num,x,y,b):
 		bit(x-2,y-3,b,0)
 	elif(num == 4):	
 		bit(x,y,0,1)
+		bit(x,y-6,0,1)
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
