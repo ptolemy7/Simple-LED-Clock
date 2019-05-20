@@ -1,7 +1,0 @@
-Dependenies:
-	Packages(names for debian-based distros):
-	python3
-	python3-pip3
-	Pyton Modules:
-	Adafruit-CircuitPython-is31fl3731
-
