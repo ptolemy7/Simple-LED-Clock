@@ -102,7 +102,8 @@ def screen_print(num,x,y,b):
 		bit(x,y-3,b,1)
 		bit(x,y-6,b,1)
 		bit(x-2,y-3,b,0)
-	elif(num == 4)	bit(x,y,0,1)
+	elif(num == 4):	
+		bit(x,y,0,1)
 		bit(x,y-3,0,1)
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
@@ -117,7 +118,7 @@ def screen_print(num,x,y,b):
 		bit(x,y-6,b,1)
 	elif(num == 6):
 		bit(x,y,0,1)
-			bit(x,y-6,b,1)
+		bit(x,y-6,b,1)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,0)
@@ -127,7 +128,7 @@ def screen_print(num,x,y,b):
 		bit(x,y-3,0,0)
 		bit(x,y-6,0,1)
 		bit(x,y-3,0,1)
-			bit(x-2,y-3,b,0)
+		bit(x-2,y-3,b,0)
 		bit(x,y,b,1)
 		bit(x-2,y,b,0)
 	elif(num == 8):
@@ -158,11 +159,11 @@ def screen_print(num,x,y,b):
 		bit(x,y-6,b,1)
 go = 0
 while True:
-	if go > 0:
+	if go = 0:
+		time_old=[-1,-1,-1]
+	else:
 		for i in range(0,3):
 			time_old[i]=clock[i]
-	else:
-		time_old=[-1,-1,-1]
 	hr = datetime.now().hour
 	mn = datetime.now().minute
 	sc = datetime.now().second
