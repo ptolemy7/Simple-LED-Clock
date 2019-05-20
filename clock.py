@@ -159,7 +159,7 @@ def screen_print(num,x,y,b):
 		bit(x,y-6,b,1)
 go = 0
 while True:
-	if go = 0:
+	if go == 0:
 		time_old=[-1,-1,-1]
 	else:
 		for i in range(0,3):
