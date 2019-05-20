@@ -9,10 +9,9 @@ import adafruit_is31fl3731
 import datetime
 #The following is to shorten what would be datetime.datetime.now()
 from datetime import datetime
-i2c = busio.I2C(board.SCL, board.SDA
+i2c = busio.I2C(board.SCL, board.SDA)
 #Change what the screen is here for whichever screen you have
-screen = adafruit_is31fl3731.CharlieBonnet(i2c)
-	
+scren = adafruit_is31fl3731.CharlieBonnet(i2c)	
 
 
 #This is so that all of the numbers may be broken up into sections 
