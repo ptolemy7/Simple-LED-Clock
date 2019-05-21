@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+#This was written and designed for a 16x8  adafruit led screen, 
+#therefore your mileage may very but if one wanted to, one 
+#*should* be able to tweak this a little bit
 import time 
 import busio
 import board
@@ -7,11 +10,10 @@ import datetime
 #The following is to shorten what would be datetime.datetime.now()
 from datetime import datetime
 i2c = busio.I2C(board.SCL, board.SDA)
-screen = adafruit_is31fl3731.CharlieBonnet(i2c)
-	
+#Change what the screen is here for whichever screen you have
+screen = adafruit_is31fl3731.CharlieBonnet(i2c)	
 
 
-#################################################################
 #This is so that all of the numbers may be broken up into sections 
 #that are 3(horrizontal) or 4(vertical) pixels long
 #x,y: the initial coordinates for the start of the line
@@ -51,8 +53,9 @@ def bright(hr):
 	else:
 		return 5 
 
-#I had an extra row on the bottom, so I decided to add a second 
-#counter for every 5 seconds 
+#I had an extra row on the bottom, so I decided to add a second counter 
+#for every 5 seconds that runs along the botton of the display, it may 
+#blink in the future, unsure as of yet
 def scounter(sec,b):
 	q = int(sec/5)
 	z = 0
@@ -62,14 +65,16 @@ def scounter(sec,b):
 		else:
 			screen.pixel(z,0,0)
 
-#This makes sure that the hour displays correctly
+#This makes sure that the hour displays correctly in 12-hr instead of 
+#24-hr format
 def hr_display(hr):
 	if(hr == 12):
 		return 12
 	else:
 		return(hr % 12)
 
-#This adds a little blip in the corner if it is in the pm
+#This adds a little blip in the corner if it is in the pm (which for 
+#this particular orrientation of the screen is the origin(0,0))
 def pm(hr,b):
 	if(hr>11):
 		screen.pixel(0,0,b)
@@ -87,6 +92,25 @@ def screen_print(num,x,y,b,go):
 			bit(x-2,y-3,0,0)
 			bit(x,y-3,0,1)
 			bit(x,y-6,0,1)
+#Not only do you have to turn on all of the possible pixels for each
+#number, but you also have to make sure that any which may have been 
+#on previously are now off, and to make this easier all of the numbers
+#have been divided into groups of 3 and 4 (see hr_display). If the display
+#is larger than 15x7, then this will need to be adjusted accordingly. There
+#are no garuntees on how well this will scale. The coordinates are using the 
+#top left corner of the 3x7 block each of the numbers occupy as the origin, 
+#and with is particular configuration going to the right is in the negative
+#directions and doing down is negative 
+def screen_print(num,x,y,b):
+	if(num == 1):
+
+		bit(x,y,0,0)
+		bit(x,y-3,0,0)
+		bit(x,y,0,1)
+		bit(x-2,y,0,0)
+		bit(x-2,y-3,0,0)
+		bit(x,y-3,0,1)
+		bit(x,y-6,0,1)
 		bit(x-1,y,b,0)
 		bit(x-1,y-3,b,0)
 	elif(num == 2):
@@ -112,81 +136,92 @@ def screen_print(num,x,y,b,go):
 			bit(x,y,0,1)
 			bit(x,y-3,0,1)
 		else:
+	elif(num == 4):	
+		bit(x,y,0,1)
+		bit(x,y-6,0,1)
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,0)
 	elif(num == 5):
-if(go != 0):
+		if(go != 0):
 		bit(x-2,y,0,0)
-else:
+		else:
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,0)
 		bit(x,y,b,1)
 		bit(x,y-6,b,1)
 	elif(num == 6):
-if(go !=0 ):
+		if(go !=0 ):
 		bit(x,y,0,1)
-else:
 		bit(x,y-6,b,1)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,0)
 		bit(x,y-3,b,0)
 	elif(num == 7):
-if(go != 0):
+		if(go != 0):
 		bit(x,y,0,0)
 		bit(x,y-3,0,0)
 		bit(x,y-6,0,1)
 		bit(x,y-3,0,1)
-else:
+		else:
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,1)
 		bit(x-2,y,b,0)
 	elif(num == 8):
-if(go == 0):
+		if(go == 0):
 		bit(x-2,y-3,b,0)
 		bit(x,y,b,1)
 		bit(x-2,y,b,0)
-else:
+	else:
 		bit(x,y,b,0)
 		bit(x,y-3,b,0)
 		bit(x,y-3,b,1)
 		bit(x,y-6,b,1)
 	elif(num == 9):
-if(go != 0):
-		bit(x,y-3,0,0)
-		bit(x,y-6,0,1)
-else:
-		bit(x,y,b,1)
-		bit(x,y,b,0)
-		bit(x-2,y,b,0)
+		if(go != 0):
+			bit(x,y-3,0,0)
+			bit(x,y-6,0,1)
+		else:
+			bit(x,y,b,1)
+			bit(x,y,b,0)
+			bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
 		bit(x-2,y-3,b,0)
 	elif(num == 0):
-if(go != 0):
-		bit(x-1,y,0,0)
-		bit(x-1,y-3,0,0)
-		bit(x,y-3,0,1)
-else:
-		bit(x,y,b,1)
-		bit(x,y,b,0)
-		bit(x-2,y,b,0)
-		bit(x-2,y-3,b,0)
-		bit(x,y-3,b,0)
-		bit(x,y-6,b,1)
+		if(go != 0):
+			bit(x-1,y,0,0)
+			bit(x-1,y-3,0,0)
+			bit(x,y-3,0,1)
+		else:
+			bit(x,y,b,1)
+			bit(x,y,b,0)
+			bit(x-2,y,b,0)
+			bit(x-2,y-3,b,0)
+			bit(x,y-3,b,0)
+			bit(x,y-6,b,1)
 
 
+
+def to_run_or_not_to_run(time_new,time_old,i,b,X = []):
+	if i == 0:
+		if (time_new % 12 == 0) and (sec > 59 or sec < 1):
+			time_old = -1 
+	if time_new > time_old :
+		screen_print(digit(clock[i],2),X[i],yy,b)
+		screen_print(digit(clock[i],1),X[i+2],yy,b)
 
 go = 0
-
+#yy is the global y value for the loop coming up
+yy = 7
 while True:
-	if go > 0:
+	if go == 0:
+		time_old=[-1,-1,-1]
+	else:
 		for i in range(0,3):
 			time_old[i]=clock[i]
-	else:
-		time_old=[-1,-1,-1]
 	hr = datetime.now().hour
 	mn = datetime.now().minute
 	sc = datetime.now().second
@@ -197,11 +232,17 @@ while True:
 		pm(clock[0],b)
 	clock[0] = hr_display(hr_actual)
 	scounter(clock[2],b)
+#This X list is a list of the x coordinate of the ancor poins for the numbers;
+#they are shuffled in order because ... for some reason that was the only way
+#my 3-AM brain could figure out how to get the loop to loop correctly, so the
+#actual order is descinding from left to right, 15,11,6,2. The y-coordinate is
+#not listed because they will all be the same at 7
 	X=[15,6,11,2]	
 	for i in range(0,2):
 		if(clock[i]>time_old[i] or ( i == 0 and time_old[i] == 11)):
 			screen_print(digit(clock[i],2),X[i],7,b,go)
 			screen_print(digit(clock[i],1),X[i+2],7,b,go)
+		to_run_or_not_to_run(clock[i],time_old[i],i,b,X)
 	if(go == 0):
 		go = 1
 	time.sleep(1)
