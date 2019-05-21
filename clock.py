@@ -239,9 +239,6 @@ while True:
 #not listed because they will all be the same at 7
 	X=[15,6,11,2]	
 	for i in range(0,2):
-		if(clock[i]>time_old[i] or ( i == 0 and time_old[i] == 11)):
-			screen_print(digit(clock[i],2),X[i],7,b,go)
-			screen_print(digit(clock[i],1),X[i+2],7,b,go)
 		to_run_or_not_to_run(clock[i],time_old[i],i,b,X)
 	if(go == 0):
 		go = 1
