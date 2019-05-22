@@ -173,9 +173,9 @@ def screen_print(num,x,y,b):
 		bit(x,y-3,b,0)
 		bit(x,y-6,b,1)
 
-def to_run_or_not_to_run(time_new,time_old,i,b,X = []):
+def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 	if i == 0:
-		if (time_new % 12 == 0) and (sec > 59 or sec < 1):
+		if (time_new % 12 == 0) and ( > 59 or sec < 1):
 			time_old = -1 
 	if time_new > time_old :
 		screen_print(digit(clock[i],2),X[i],yy,b)
@@ -207,7 +207,7 @@ while True:
 #not listed because they will all be the same at 7
 	X=[15,6,11,2]	
 	for i in range(0,2):
-		to_run_or_not_to_run(clock[i],time_old[i],i,b,X)
+		to_run_or_not_to_run(clock[i],time_old[i],clock[2],i,b,X)
 	if(go == 0):
 		go = 1
 	time.sleep(1)
