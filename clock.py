@@ -177,7 +177,7 @@ def screen_print(num,x,y,b):
 
 def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 	if i == 0:
-		if (time_new % 12 == 0) and ( sec > 59 or sec < 1):
+		if (time_new - 1 % 12 == 0) and ( sec > 59 or sec < 1):
 			time_old = -1 
 	if time_new > time_old :
 		screen_print(digit(clock[i],2),X[i],yy,b)
