@@ -59,9 +59,13 @@ def bright(hr):
 def scounter(sec,b):
 	q = int(sec/5)
 	z = 0
+	if sec % 2 == 0:
+		b_new = b
+	else:
+		b_new = b
 	for z in range(4,16):
 		if z == 15 - q:
-			screen.pixel(z,0,b,blink=True)
+			screen.pixel(z,0,b_new)
 		else:
 			screen.pixel(z,0,0)
 
