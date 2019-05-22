@@ -60,8 +60,8 @@ def scounter(sec,b):
 	q = int(sec/5)
 	z = 0
 	for z in range(5,16):
-		if z in range(15-q,16):
-			screen.pixel(z,0,b)
+		if z == 15 - q:
+			screen.pixel(z,0,b,blink=True)
 		else:
 			screen.pixel(z,0,0)
 
