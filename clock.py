@@ -12,7 +12,7 @@ from datetime import datetime
 i2c = busio.I2C(board.SCL, board.SDA)
 #Change what the screen is here for whichever screen you have
 screen = adafruit_is31fl3731.CharlieBonnet(i2c)	
-
+screen.blink(1100)
 
 #This is so that all of the numbers may be broken up into sections 
 #that are 3(horrizontal) or 4(vertical) pixels long
@@ -59,7 +59,7 @@ def bright(hr):
 def scounter(sec,b):
 	q = int(sec/5)
 	z = 0
-	for z in range(5,16):
+	for z in range(4,16):
 		if z == 15 - q:
 			screen.pixel(z,0,b,blink=True)
 		else:
