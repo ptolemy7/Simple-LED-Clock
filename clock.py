@@ -65,6 +65,7 @@ def scounter(sec,b):
 		b_new = b
 	for z in range(4,16):
 		if z == 15 - q:
+			screen.pixel(z,0,0)
 			screen.pixel(z,0,b_new)
 		else:
 			screen.pixel(z,0,0)
