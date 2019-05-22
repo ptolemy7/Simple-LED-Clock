@@ -62,14 +62,11 @@ def scounter(sec,b):
 	if sec % 2 == 0:
 		b_new = b
 	else:
-		b_new = b
+		b_new = 0
 	for z in range(4,16):
+		screen.pixel(z,0,0)
 		if z == 15 - q:
-			screen.pixel(z,0,0)
 			screen.pixel(z,0,b_new)
-		else:
-			screen.pixel(z,0,0)
-
 #This makes sure that the hour displays correctly in 12-hr instead of 
 #24-hr format
 def hr_display(hr):
@@ -215,5 +212,5 @@ while True:
 		to_run_or_not_to_run(clock[i],time_old[i],clock[2],i,b,X)
 	if(go == 0):
 		go = 1
-	time.sleep(1)
+	time.sleep(.5)
 	
