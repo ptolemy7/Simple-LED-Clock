@@ -189,7 +189,7 @@ def screen_print(num,x,y,b):
 
 def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 	if i == 0:
-		if (time_new % 12 == 0) and ( sec > 59 or sec < 1):
+		if ((time_new % 12 == 0) or (time_new = 1)) and ( sec > 59 or sec < 1):
 			time_old = -1 
 	if i == 1:
 		if(time_new % 60 == 0):
