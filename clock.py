@@ -224,11 +224,8 @@ while True:
 #not listed because they will all be the same at 7
 	X=[15,6,11,2]	
 	for i in range(0,2):
-<<<<<<< HEAD
-		to_run_or_not_to_run(clock[i],time_old[i],clock[2],i,b,X)
-=======
 		to_run_or_not_to_run(clock[i],time_old[i],i,b,X)
->>>>>>> unstable
+		to_run_or_not_to_run(clock[i],time_old[i],i,b,X)
 	if(go == 0):
 		go = 1
 	time.sleep(.5)
