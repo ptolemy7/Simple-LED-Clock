@@ -83,6 +83,17 @@ def pm(hr,b):
 	else:
 		screen.pixel(0,0,0)
 
+def screen_print(num,x,y,b,go):
+	if(num == 1):
+		#Turns off all the ones from 0
+		if go != 0:
+			bit(x,y,0,0)
+			bit(x,y-3,0,0)
+			bit(x,y,0,1)
+			bit(x-2,y,0,0)
+			bit(x-2,y-3,0,0)
+			bit(x,y-3,0,1)
+			bit(x,y-6,0,1)
 #Not only do you have to turn on all of the possible pixels for each
 #number, but you also have to make sure that any which may have been 
 #on previously are now off, and to make this easier all of the numbers
@@ -94,7 +105,6 @@ def pm(hr,b):
 #directions and doing down is negative 
 def screen_print(num,x,y,b):
 	if(num == 1):
-
 		bit(x,y,0,0)
 		bit(x,y-3,0,0)
 		bit(x,y,0,1)
@@ -105,8 +115,6 @@ def screen_print(num,x,y,b):
 		bit(x-1,y,b,0)
 		bit(x-1,y-3,b,0)
 	elif(num == 2):
-		bit(x-1,y,0,0)
-		bit(x-1,y-3,0,0)
 		bit(x,y,b,1)
 		bit(x-2,y,b,0)
 		bit(x,y-3,b,1)
@@ -119,6 +127,9 @@ def screen_print(num,x,y,b):
 		bit(x,y-3,b,1)
 		bit(x,y-6,b,1)
 		bit(x-2,y-3,b,0)
+	elif(num == 4):
+		bit(x,y,0,1)
+		bit(x,y-3,0,1)
 	elif(num == 4):	
 		bit(x,y,0,1)
 		bit(x,y-6,0,1)
@@ -175,10 +186,14 @@ def screen_print(num,x,y,b):
 		bit(x,y-3,b,0)
 		bit(x,y-6,b,1)
 
+
 def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 	if i == 0:
 		if (time_new % 12 == 0) and ( sec > 59 or sec < 1):
 			time_old = -1 
+	if i == 1:
+		if(time_new % 60 == 0):
+			time_old = -1
 	if time_new > time_old :
 		screen_print(digit(clock[i],2),X[i],yy,b)
 		screen_print(digit(clock[i],1),X[i+2],yy,b)
@@ -209,7 +224,11 @@ while True:
 #not listed because they will all be the same at 7
 	X=[15,6,11,2]	
 	for i in range(0,2):
+<<<<<<< HEAD
 		to_run_or_not_to_run(clock[i],time_old[i],clock[2],i,b,X)
+=======
+		to_run_or_not_to_run(clock[i],time_old[i],i,b,X)
+>>>>>>> unstable
 	if(go == 0):
 		go = 1
 	time.sleep(.5)
