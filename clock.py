@@ -87,14 +87,13 @@ def pm(hr,b):
 #number, but you also have to make sure that any which may have been 
 #on previously are now off, and to make this easier all of the numbers
 #have been divided into groups of 3 and 4 (see hr_display). If the display
-#is larger than 15x7, then this will need to be adjusted accordingly. There
+#is larger than 16x8, then this will need to be adjusted accordingly. There
 #are no garuntees on how well this will scale. The coordinates are using the 
 #top left corner of the 3x7 block each of the numbers occupy as the origin, 
 #and with is particular configuration going to the right is in the negative
 #directions and doing down is negative 
 def screen_print(num,x,y,b):
 	if(num == 1):
-
 		bit(x,y,0,0)
 		bit(x,y-3,0,0)
 		bit(x,y,0,1)
@@ -119,7 +118,7 @@ def screen_print(num,x,y,b):
 		bit(x,y-3,b,1)
 		bit(x,y-6,b,1)
 		bit(x-2,y-3,b,0)
-	elif(num == 4):	
+	elif(num == 4):
 		bit(x,y,0,1)
 		bit(x,y-6,0,1)
 		bit(x-2,y,b,0)
@@ -175,10 +174,14 @@ def screen_print(num,x,y,b):
 		bit(x,y-3,b,0)
 		bit(x,y-6,b,1)
 
+
 def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 	if i == 0:
-		if (time_new - 1 % 12 == 0) and ( sec > 59 or sec < 1):
+		if ((time_new % 12 == 0) or (time_new == 1)) and ( sec > 59 or sec < 1):
 			time_old = -1 
+	if i == 1:
+		if(time_new % 60 == 0):
+			time_old = -1
 	if time_new > time_old :
 		screen_print(digit(clock[i],2),X[i],yy,b)
 		screen_print(digit(clock[i],1),X[i+2],yy,b)
