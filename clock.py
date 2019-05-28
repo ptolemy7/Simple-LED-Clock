@@ -98,7 +98,7 @@ def screen_print(num,x,y,b,go):
 #number, but you also have to make sure that any which may have been 
 #on previously are now off, and to make this easier all of the numbers
 #have been divided into groups of 3 and 4 (see hr_display). If the display
-#is larger than 15x7, then this will need to be adjusted accordingly. There
+#is larger than 16x8, then this will need to be adjusted accordingly. There
 #are no garuntees on how well this will scale. The coordinates are using the 
 #top left corner of the 3x7 block each of the numbers occupy as the origin, 
 #and with is particular configuration going to the right is in the negative
