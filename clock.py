@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-#This was written and designed for a 16x8  adafruit led screen, 
-#therefore your mileage may very but if one wanted to, one 
+#This was written and designed for a 16x8  adafruit led screen,
+#therefore your mileage may very but if one wanted to, one
 #*should* be able to tweak this a little bit
-import time 
+import time
 import busio
 import board
 import adafruit_is31fl3731
@@ -11,10 +11,10 @@ import datetime
 from datetime import datetime
 i2c = busio.I2C(board.SCL, board.SDA)
 #Change what the screen is here for whichever screen you have
-screen = adafruit_is31fl3731.CharlieBonnet(i2c)	
+screen = adafruit_is31fl3731.CharlieBonnet(i2c)
 screen.blink(1100)
 
-#This is so that all of the numbers may be broken up into sections 
+#This is so that all of the numbers may be broken up into sections
 #that are 3(horrizontal) or 4(vertical) pixels long
 #x,y: the initial coordinates for the start of the line
 #b: the brightness of the pixel (controlled by the bright() function
@@ -31,8 +31,8 @@ def bit(x,y,b,orr):
 		screen.pixel(x-2,y,b)
 
 #This funciton takes a 1 or 2 digit number and seperates the number
-#into its constituent digits, where place is whether the 1st or 2nd 
-#place after the decimal(from right to left) e.g. in '14' 1 is the 
+#into its constituent digits, where place is whether the 1st or 2nd
+#place after the decimal(from right to left) e.g. in '14' 1 is the
 #2nd digit where 4 is the 1st
 def digit(num,place):
 	if(num < 10):
@@ -51,10 +51,10 @@ def bright(hr):
 	if(hr<10 or hr>20):
 		return 1
 	else:
-		return 5 
+		return 5
 
-#I had an extra row on the bottom, so I decided to add a second counter 
-#for every 5 seconds that runs along the botton of the display, it may 
+#I had an extra row on the bottom, so I decided to add a second counter
+#for every 5 seconds that runs along the botton of the display, it may
 #blink in the future, unsure as of yet
 def scounter(sec,b):
 	q = int(sec/5)
@@ -67,7 +67,7 @@ def scounter(sec,b):
 		screen.pixel(z,0,0)
 		if z == 15 - q:
 			screen.pixel(z,0,b_new)
-#This makes sure that the hour displays correctly in 12-hr instead of 
+#This makes sure that the hour displays correctly in 12-hr instead of
 #24-hr format
 def hr_display(hr):
 	if(hr == 12):
@@ -75,7 +75,7 @@ def hr_display(hr):
 	else:
 		return(hr % 12)
 
-#This adds a little blip in the corner if it is in the pm (which for 
+#This adds a little blip in the corner if it is in the pm (which for
 #this particular orrientation of the screen is the origin(0,0))
 def pm(hr,b):
 	if(hr>11):
@@ -84,14 +84,14 @@ def pm(hr,b):
 		screen.pixel(0,0,0)
 
 #Not only do you have to turn on all of the possible pixels for each
-#number, but you also have to make sure that any which may have been 
+#number, but you also have to make sure that any which may have been
 #on previously are now off, and to make this easier all of the numbers
 #have been divided into groups of 3 and 4 (see hr_display). If the display
 #is larger than 16x8, then this will need to be adjusted accordingly. There
-#are no garuntees on how well this will scale. The coordinates are using the 
-#top left corner of the 3x7 block each of the numbers occupy as the origin, 
+#are no garuntees on how well this will scale. The coordinates are using the
+#top left corner of the 3x7 block each of the numbers occupy as the origin,
 #and with is particular configuration going to the right is in the negative
-#directions and doing down is negative 
+#directions and doing down is negative
 def screen_print(num,x,y,b):
 	if(num == 1):
 		bit(x,y,0,0)
@@ -173,19 +173,16 @@ def screen_print(num,x,y,b):
 		bit(x-2,y-3,b,0)
 		bit(x,y-3,b,0)
 		bit(x,y-6,b,1)
-
-
 def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 	if i == 0:
 		if ((time_new % 12 == 0) or (time_new == 1)) and ( sec > 59 or sec < 1):
-			time_old = -1 
+			time_old = -1
 	if i == 1:
-		if(time_new % 60 == 0):
+		if(time_new % 60 == 0) and ( sec > 59 or sec < 1):
 			time_old = -1
 	if time_new > time_old :
 		screen_print(digit(clock[i],2),X[i],yy,b)
 		screen_print(digit(clock[i],1),X[i+2],yy,b)
-
 go = 0
 #yy is the global y value for the loop coming up
 yy = 7
@@ -210,10 +207,9 @@ while True:
 #my 3-AM brain could figure out how to get the loop to loop correctly, so the
 #actual order is descinding from left to right, 15,11,6,2. The y-coordinate is
 #not listed because they will all be the same at 7
-	X=[15,6,11,2]	
+	X=[15,6,11,2]
 	for i in range(0,2):
 		to_run_or_not_to_run(clock[i],time_old[i],clock[2],i,b,X)
 	if(go == 0):
 		go = 1
 	time.sleep(.5)
-	
