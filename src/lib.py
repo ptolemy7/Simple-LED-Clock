@@ -3,7 +3,7 @@ import board
 import adafruit_is31fl3731
 i2c = busio.I2C(board.SCL, board.SDA)
 screen = adafruit_is31fl3731.CharlieBonnet(i2c)
-i = 0"""
+"""
 full_screen = [[0,0],
         [0,1],
         [0,2],
@@ -30,6 +30,7 @@ full_screen = [[0,0],
         ]
 
 print(full_screen)
+
 class number_to_print:
     def __init__(self):
         self.num = self
@@ -198,4 +199,20 @@ def to_be_on(num):
                 ]
     else:
         print("Error!!")
-#def with_out(X=[[]]):
+    return pixels
+
+def dif(X=[],Y=[]):
+    #This *should* spit out a list of the elements of X that aren't in Y
+    #However, it doesn't work both ways. It takes every element of X and
+    #Checks to see if it is the same as any element in Y, if it is the same,
+    #Then it stops, if it makes the check, then it adds it to the Diff list,
+    #Which this funtion returns
+    new_element = 0
+    Diff = []
+    for i in X:
+        for i in Y:
+            if X[i] == Y[i]:
+                break
+        Diff[new_element] = X[i]
+        return Diff
+print(dif(full_screen,to_be_on(3)))
