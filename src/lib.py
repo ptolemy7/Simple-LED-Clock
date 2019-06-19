@@ -217,5 +217,5 @@ def dif(X=[],Y=[]):
         if new_element == 0:
             Diff.append(X[i])
     return Diff
-print(dif(to_be_on(1),full_screen))
+print(dif(full_screen,to_be_on(1)))
 #print(full_screen[0])
