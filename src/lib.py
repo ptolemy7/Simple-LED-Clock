@@ -1,14 +1,34 @@
-import busio
+"""import busio
 import board
 import adafruit_is31fl3731
 i2c = busio.I2C(board.SCL, board.SDA)
 screen = adafruit_is31fl3731.CharlieBonnet(i2c)
-i = 0
-full_screen = []
-for x in range(0,8):
-    for y in range(0,3):
-        full_screen[i] = [x,y]
-        i=i+1
+i = 0"""
+full_screen = [[0,0],
+        [0,1],
+        [0,2]
+        [0,3],
+        [0,4],
+        [0,5],
+        [0,6],
+        [0,7],
+        [1,0],
+        [1,2],
+        [1,4],
+        [1,5],
+        [1,6],
+        [2,0],
+        [2,1],
+        [2,2],
+        [2,3],
+        [2,4],
+        [2,5],
+        [2,6],
+        [2,7],
+        [1,7],
+        [1,3]
+        ]
+
 print(full_screen)
 class number_to_print:
     def __init__(self):
