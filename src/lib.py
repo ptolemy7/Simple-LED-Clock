@@ -209,13 +209,13 @@ def dif(X=[],Y=[]):
     new_element = 0
     Diff = []
     for i in range(0,len(X)):
+        new_element = 0
         for q in range(0,len(Y)):
-            if new_element != 0:
-                break
             if X[i] == Y[q]:
                 new_element=+1
+            #print(i,q)
         if new_element == 0:
             Diff.append(X[i])
     return Diff
-print(dif(full_screen,to_be_on(1)))
+print(dif(full_screen,to_be_on(2)))
 #print(full_screen[0])
