@@ -219,6 +219,6 @@ def dif(X=[],Y=[]):
     return Diff
 #print(dif(full_screen,to_be_on(2)))
 #print(full_screen[0])
-def print_to_screen(bright,X=[]):
+def print_to_screen(b,X=[]):
     for i in range(0,len(X)):
         screen.pixel(X[i][0],X[i][1],b)
