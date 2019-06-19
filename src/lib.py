@@ -6,7 +6,7 @@ screen = adafruit_is31fl3731.CharlieBonnet(i2c)
 i = 0"""
 full_screen = [[0,0],
         [0,1],
-        [0,2]
+        [0,2],
         [0,3],
         [0,4],
         [0,5],
@@ -37,12 +37,11 @@ class number_to_print:
         self.on = to_be_on(self)
         self.off = with_out(self.on)
 
- def to_be_on(num):
-#put pixel stuffs here
+def to_be_on(num):
     if num == 0 :
         pixels = [[0,0],
                 [0,1],
-                [0,2]
+                [0,2],
                 [0,3],
                 [0,4],
                 [0,5],
@@ -197,5 +196,6 @@ class number_to_print:
                 [1,7],
                 [1,3]
                 ]
-
-def with_out(X=[[]]):
+    else:
+        print("Error!!")
+#def with_out(X=[[]]):
