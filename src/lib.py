@@ -1,9 +1,9 @@
-"""import busio
+import busio
 import board
 import adafruit_is31fl3731
 i2c = busio.I2C(board.SCL, board.SDA)
 screen = adafruit_is31fl3731.CharlieBonnet(i2c)
-"""
+
 full_screen = [[0,0],
         [0,1],
         [0,2],
@@ -217,5 +217,8 @@ def dif(X=[],Y=[]):
         if new_element == 0:
             Diff.append(X[i])
     return Diff
-print(dif(full_screen,to_be_on(2)))
+#print(dif(full_screen,to_be_on(2)))
 #print(full_screen[0])
+def print_to_screen(bright,X=[]):
+    for i in range(0,len(X)):
+        screen.pixel(X[i][0],X[i][1],b)
