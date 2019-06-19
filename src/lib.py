@@ -29,7 +29,6 @@ full_screen = [[0,0],
         [1,3]
         ]
 
-print(full_screen)
 
 class number_to_print:
     def __init__(self):
@@ -163,7 +162,7 @@ def to_be_on(num):
     elif num == 8:
         pixels = [[0,0],
                 [0,1],
-                [0,2]
+                [0,2],
                 [0,3],
                 [0,4],
                 [0,5],
@@ -209,10 +208,14 @@ def dif(X=[],Y=[]):
     #Which this funtion returns
     new_element = 0
     Diff = []
-    for i in X:
-        for i in Y:
-            if X[i] == Y[i]:
+    for i in range(0,len(X)):
+        for q in range(0,len(Y)):
+            if new_element != 0:
                 break
-        Diff[new_element] = X[i]
-        return Diff
-print(dif(full_screen,to_be_on(3)))
+            if X[i] == Y[q]:
+                new_element=+1
+        if new_element == 0:
+            Diff.append(X[i])
+    return Diff
+print(dif(to_be_on(1),full_screen))
+#print(full_screen[0])
