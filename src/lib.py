@@ -34,9 +34,9 @@ full_screen = [[0,0],
 class number_to_print:
     def __init__(self):
         self.num = self
-        self.name = name(self)
+        #self.name = name(self)
         self.on = to_be_on(self)
-        self.off = with_out(self.on)
+        self.off = dif(self,full_screen)
 
 def to_be_on(num):
     if num == 0 :
@@ -46,7 +46,6 @@ def to_be_on(num):
                 [0,3],
                 [0,4],
                 [0,5],
-                [0,7],
                 [1,0],
                 [2,0],
                 [2,1],
@@ -55,8 +54,8 @@ def to_be_on(num):
                 [2,4],
                 [2,5],
                 [2,6],
-                [2,7],
-                [1,7]
+                [1,6],
+                [0,6]
                 ]
     elif num == 1:
         pixels = [[1,0],
@@ -65,8 +64,7 @@ def to_be_on(num):
                 [1,3],
                 [1,4],
                 [1,5],
-                [1,6],
-                [1,7]
+                [1,6]
                 ]
     elif num == 2:
         pixels = [[0,0],
@@ -80,9 +78,8 @@ def to_be_on(num):
                 [0,4],
                 [0,5],
                 [0,6],
-                [0,7],
-                [1,7],
-                [2,7]
+                [1,6],
+                [2,6]
                 ]
     elif num == 3:
         pixels = [[0,0],
@@ -96,9 +93,8 @@ def to_be_on(num):
                 [2,4],
                 [2,5],
                 [2,6],
-                [2,7],
-                [1,7],
-                [0,7]
+                [1,6],
+                [0,6]
                 ]
     elif num == 4:
         pixels = [[0,0],
@@ -112,8 +108,7 @@ def to_be_on(num):
                 [2,2],
                 [2,4],
                 [2,5],
-                [2,6],
-                [2,7]
+                [2,6]
                 ]
     elif num == 5:
         pixels = [[0,0],
@@ -127,9 +122,8 @@ def to_be_on(num):
                 [2,4],
                 [2,5],
                 [2,6],
-                [2,7],
-                [1,7],
-                [0,7]
+                [1,6],
+                [0,6]
                 ]
     elif num == 6:
         pixels = [[0,0],
@@ -141,12 +135,8 @@ def to_be_on(num):
                 [2,4],
                 [2,5],
                 [2,6],
-                [2,7],
-                [1,7],
-                [0,7],
-                [0,6],
-                [0,5],
-                [0,4]
+                [1,6],
+                [0,6]
                 ]
     elif num == 7:
         pixels = [[0,0],
@@ -157,8 +147,7 @@ def to_be_on(num):
                 [2,3],
                 [2,4],
                 [2,5],
-                [2,6],
-                [2,7]
+                [2,6]
                 ]
     elif num == 8:
         pixels = [[0,0],
@@ -167,7 +156,7 @@ def to_be_on(num):
                 [0,3],
                 [0,4],
                 [0,5],
-                [0,7],
+                [0,6],
                 [1,0],
                 [2,0],
                 [2,1],
@@ -176,8 +165,7 @@ def to_be_on(num):
                 [2,4],
                 [2,5],
                 [2,6],
-                [2,7],
-                [1,7],
+                [1,6],
                 [1,3]
                 ]
     elif num == 9:
@@ -193,8 +181,6 @@ def to_be_on(num):
                 [2,4],
                 [2,5],
                 [2,6],
-                [2,7],
-                [1,7],
                 [1,3]
                 ]
     else:
@@ -220,6 +206,45 @@ def dif(X=[],Y=[]):
     return Diff
 #print(dif(full_screen,to_be_on(2)))
 #print(full_screen[0])
-def print_to_screen(b,X=[]):
-    for i in range(0,len(X)):
-        screen.pixel(X[i][0],X[i][1],b)
+def print_to_screen(b,x,y,PIX=[]):
+    #Here b is the brightness, (x,y) are the initial points, which are here
+    #defined as the top left corner of the sectins of the screen for the
+    #part of the clock we are working with
+    for i in range(0,len(PIX)):
+        screen.pixel(x+PIX[i][0],y+PIX[i][1],b)
+
+def digit(num,place):
+    if(num < 10):
+		if(place == 1):
+			return num
+		else:
+			return 0
+	else:
+		if(place == 1):
+			return (num % 10)
+		else:
+			return int(num/10)
+
+def bright(hr):
+	if(hr<10 or hr>20):
+		return 1
+	else:
+		return 5
+
+def scounter(sec,b):
+	q = int(sec/5)
+	z = 0
+	if sec % 2 == 0:
+		b_new = b
+	else:
+		b_new = 0
+	for z in range(4,16):
+		screen.pixel(z,0,0)
+		if z == 15 - q:
+			screen.pixel(z,0,b_new)
+
+def pm(hr,b):
+	if(hr>11):
+		screen.pixel(0,0,b)
+	else:
+		screen.pixel(0,0,0)
