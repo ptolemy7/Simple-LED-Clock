@@ -259,9 +259,9 @@ def to_run_or_not_to_run(b,yy,X=[],new=[],old=[],pix=[]):
             if old[i] == 59:
                 temp = -1
         if (new[i] > old[i] or temp == -1):
-            print_the_stuff_to_screen(i,b,yy,X,new[i],pix)
+            print_the_stuff_to_screen(i,b,yy,new[i],X,pix)
 
-def print_the_stuff_to_screen(i,b,yy,X=[],tempus,pix=[]):
+def print_the_stuff_to_screen(i,b,yy,tempus,X=[],pix=[]):
     tens_place = digit(tempus,2)
     ones_place = digit(tempus,1)
     print_to_screen(b,X[i],yy,pix[tens_place])
