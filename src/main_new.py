@@ -19,7 +19,7 @@ while True:
     clock_new[1] = datetime.now().minute
     clock_new[2] = datetime.now().second
     hr_24 = clock[0]
-    if(clock_new[0] > clock_old[0] or clock_old[0] == 11):
-        b = bright(clock_new[0])
-        pm(clock_new[0])
-    scounter(clock_new[2],b)
+    b = bright(new[0])
+    lib.scounter(clock_new[2],b)
+    lib.to_run_or_not_to_run(X,clock_new,clock_old)
+    time.sleep(.5)

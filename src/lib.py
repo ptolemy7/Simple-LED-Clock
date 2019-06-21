@@ -4,6 +4,7 @@ import adafruit_is31fl3731
 i2c = busio.I2C(board.SCL, board.SDA)
 screen = adafruit_is31fl3731.CharlieBonnet(i2c)
 
+#Defines a full 3x7 screen
 full_screen = [[0,0],
         [0,1],
         [0,2],
@@ -11,9 +12,8 @@ full_screen = [[0,0],
         [0,4],
         [0,5],
         [0,6],
-        [0,7],
         [1,0],
-	[1,1],
+	    [1,1],
         [1,2],
         [1,4],
         [1,5],
@@ -25,11 +25,8 @@ full_screen = [[0,0],
         [2,4],
         [2,5],
         [2,6],
-        [2,7],
-        [1,7],
         [1,3]
         ]
-
 
 class number_to_print:
     def __init__(self):
@@ -39,6 +36,7 @@ class number_to_print:
         self.off = dif(self,full_screen)
 
 def to_be_on(num):
+    #Defines the pixels for each number on a 3x7 screen
     if num == 0 :
         pixels = [[0,0],
                 [0,1],
@@ -247,3 +245,12 @@ def pm(hr,b):
 		screen.pixel(0,0,b)
 	else:
 		screen.pixel(0,0,0)
+
+def to_run_or_not_to_run(yy,X=[],new=[],old=[]):
+    for i in range(0,3):
+        if i = 0:
+            if ((new[i] > old[i]) or (new[1] == 11)):
+                pm(new[0])
+                old[0] = -1
+        if new[i] > old[i]:
+            print_to_screen(b,X[i],yy,new[i])
