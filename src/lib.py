@@ -30,7 +30,7 @@ full_screen = [[0,0],
 
 class number_to_print:
     def __init__(self):
-        self.num = self
+        #self.num = self
         #self.name = name(self)
         self.on = to_be_on(self)
         self.off = dif(self,full_screen)
