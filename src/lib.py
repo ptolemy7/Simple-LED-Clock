@@ -204,8 +204,7 @@ def dif(X=[],Y=[]):
         if new_element == 0:
             Diff.append(X[i])
     return Diff
-#print(dif(full_screen,to_be_on(2)))
-#print(full_screen[0])
+
 def print_to_screen(b,x,y,PIX=[]):
     #Here b is the brightness, (x,y) are the initial points, which are here
     #defined as the top left corner of the sectins of the screen for the
