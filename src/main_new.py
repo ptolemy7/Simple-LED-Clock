@@ -3,11 +3,11 @@
 import time
 import datetime
 from datetime import datetime
-
+import lib
 #Defining constant and/or gobal variables here
-pix[9]
+pix = [9]
 for i in range(0,10):
-    pix[i] = number_to_print(i)
+    pix[i] = lib.number_to_print(i)
 go = 0
 yy = 7
 X=[15,6,11,2]

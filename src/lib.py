@@ -214,15 +214,15 @@ def print_to_screen(b,x,y,PIX=[]):
 
 def digit(num,place):
     if(num < 10):
-		if(place == 1):
-			return num
-		else:
-			return 0
-	else:
-		if(place == 1):
-			return (num % 10)
-		else:
-			return int(num/10)
+        if(place == 1):
+            return num
+        else:
+            return 0
+    else:
+        if(place == 1):
+            return (num % 10)
+        else:
+            return int(num/10)
 
 def bright(hr):
 	if(hr<10 or hr>20):
@@ -251,12 +251,11 @@ def pm(hr,b):
 def to_run_or_not_to_run(yy,X=[],new=[],old=[],pix=[]):
     temp = 0
     for i in range(0,2):
-        if i = 0:
-            if ((new[i] > old[i]) or new[1] == 11)):
+        if i == 0:
+            if ((new[i] > old[i]) or (new[1] == 11)):
                 pm(new[0])
                 temp = -1
         if i == 1:
             if old[i] == 59:
                 temp = -1
-        if new[i] > old[i] or temp == -1:
-            
+        if (new[i] > old[i] or temp == -1):
