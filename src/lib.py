@@ -34,6 +34,8 @@ class number_to_print:
         #self.name = name(self)
         self.on = to_be_on(self)
         self.off = dif(self,full_screen)
+        self.turn_on = dif(self,self+1)
+        self.turn_off = dif(self+1,self)
 
 def to_be_on(num):
     #Defines the pixels for each number on a 3x7 screen
@@ -246,11 +248,15 @@ def pm(hr,b):
 	else:
 		screen.pixel(0,0,0)
 
-def to_run_or_not_to_run(yy,X=[],new=[],old=[]):
-    for i in range(0,3):
+def to_run_or_not_to_run(yy,X=[],new=[],old=[],pix=[]):
+    temp = 0
+    for i in range(0,2):
         if i = 0:
-            if ((new[i] > old[i]) or (new[1] == 11)):
+            if ((new[i] > old[i]) or new[1] == 11)):
                 pm(new[0])
-                old[0] = -1
-        if new[i] > old[i]:
-            print_to_screen(b,X[i],yy,new[i])
+                temp = -1
+        if i == 1:
+            if old[i] == 59:
+                temp = -1
+        if new[i] > old[i] or temp == -1:
+            

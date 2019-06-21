@@ -5,10 +5,14 @@ import datetime
 from datetime import datetime
 
 #Defining constant and/or gobal variables here
+pix[9]
+for i in range(0,10):
+    pix[i] = number_to_print(i)
 go = 0
 yy = 7
 X=[15,6,11,2]
 clock_new[3]
+#This bit actually runs every half second, what actually runs the clock
 while True:
     if go == 0:
         clock_old=[-1,-1,-1]
@@ -21,5 +25,5 @@ while True:
     hr_24 = clock[0]
     b = bright(new[0])
     lib.scounter(clock_new[2],b)
-    lib.to_run_or_not_to_run(X,clock_new,clock_old)
+    lib.to_run_or_not_to_run(X,yy,clock_new,clock_old,pix)
     time.sleep(.5)
