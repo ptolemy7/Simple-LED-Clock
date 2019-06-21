@@ -248,7 +248,7 @@ def pm(hr,b):
 	else:
 		screen.pixel(0,0,0)
 
-def to_run_or_not_to_run(yy,X=[],new=[],old=[],pix=[]):
+def to_run_or_not_to_run(b,yy,X=[],new=[],old=[],pix=[]):
     temp = 0
     for i in range(0,2):
         if i == 0:
@@ -259,3 +259,10 @@ def to_run_or_not_to_run(yy,X=[],new=[],old=[],pix=[]):
             if old[i] == 59:
                 temp = -1
         if (new[i] > old[i] or temp == -1):
+            print_the_stuff_to_screen(i,b,yy,X,new[i],pix)
+
+def print_the_stuff_to_screen(i,b,yy,X=[],tempus,pix=[]):
+    tens_place = digit(tempus,2)
+    ones_place = digit(tempus,1)
+    print_to_screen(b,X[i],yy,pix[tens_place])
+    print_to_screen(b,X[i+2],yy,pix[ones_place])

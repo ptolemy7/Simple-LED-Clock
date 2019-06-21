@@ -25,5 +25,5 @@ while True:
     hr_24 = clock[0]
     b = bright(new[0])
     lib.scounter(clock_new[2],b)
-    lib.to_run_or_not_to_run(X,yy,clock_new,clock_old,pix)
+    lib.to_run_or_not_to_run(b,yy,X,clock_new,clock_old,pix)
     time.sleep(.5)
