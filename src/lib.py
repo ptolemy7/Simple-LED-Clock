@@ -210,7 +210,7 @@ def print_to_screen(b,x,y,PIX=[]):
     #defined as the top left corner of the sectins of the screen for the
     #part of the clock we are working with
     for i in range(0,len(PIX)):
-        screen.pixel(x+PIX[i][0],y+PIX[i][1],b)
+        screen.pixel(x-PIX[i][0],y-PIX[i][1],b)
 
 def digit(num,place):
     #Takes the one or two digit number and which 'place' as args, to
