@@ -213,6 +213,9 @@ def print_to_screen(b,x,y,PIX=[]):
         screen.pixel(x+PIX[i][0],y+PIX[i][1],b)
 
 def digit(num,place):
+    #Takes the one or two digit number and which 'place' as args, to
+    #return the value of one of the places, breaking the number up,
+    #the 'place', is defined by the powers of 10 plus one
     if(num < 10):
         if(place == 1):
             return num
@@ -225,6 +228,7 @@ def digit(num,place):
             return int(num/10)
 
 def bright(hr):
+    #Sets brightness to 1 if it is between 10 am and 10 pm, 5 every other time
 	if(hr<10 or hr>20):
 		return 1
 	else:
