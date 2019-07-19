@@ -14,6 +14,8 @@ make_link clock.timer /etc/systemd/system/
 systemctl enable clock.timer
 cd ../install_files/
 ##installs all of the dependencies, python3 and python3-pip, and the python dependencies
-apt update
-apt install $(cat dependencies.system) --yes
-pip3 install $(cat dependencies.python)
+update() {
+}
+##apt update
+#apt install $(cat dependencies.system) --yes
+#pip3 install $(cat dependencies.python)
