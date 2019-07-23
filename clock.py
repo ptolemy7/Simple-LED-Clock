@@ -3,8 +3,8 @@
 #therefore your mileage may very but if one wanted to, one
 #*should* be able to tweak this a little bit
 import time
-import busio
-import board
+import busio.py
+import board.py
 import adafruit_is31fl3731
 import datetime
 #The following is to shorten what would be datetime.datetime.now()
