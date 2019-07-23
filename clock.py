@@ -3,7 +3,7 @@
 #therefore your mileage may very but if one wanted to, one
 #*should* be able to tweak this a little bit
 import time
-import busio.py
+import busio
 import board.py
 import adafruit_is31fl3731
 import datetime
