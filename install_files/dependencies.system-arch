@@ -1,2 +1,5 @@
 python
 python-pip
+base-devel
+i2c-tools
+lm_sensosrs

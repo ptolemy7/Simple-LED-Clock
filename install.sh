@@ -2,8 +2,9 @@
 ##Make sure everything is current
 /usr/bin/git pull origin master
 ##Make some simlinks
+sudo install $1
 make_link(){
-	ln -sf $(pwd)/$1 $2$1
+	sudo ln -sf $(pwd)/$1 $2$1
 }
 make_link clock.py /usr/local/sbin/
 make_link clock_off.py /usr/local/sbin/
@@ -25,7 +26,11 @@ install() {
 	fi
 	pip3 install $(cat dependencies.python)
 }
-
-install $1
+isntal_from_aur() {
+	cd $HOME
+	git clone https://aur.archlinux.org/python-raspberry-gpio.git
+	cd python-raspberry-gpio
+	makepkg -s
+}
 
 echo "Done!! It *should* work now"
