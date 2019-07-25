@@ -1,8 +1,10 @@
 #!/bin/bash
 ##Make sure everything is current
+set -e 
 if [[ ! -a /usr/bin/git ]]; then
 	echo "Error, you must manually install git (sudo apt install git or pacman -S git)"
 	exit "Git not installed"
+fi
 /usr/bin/git pull origin master
 ##Make some simlinks
 sudo install $1
@@ -15,7 +17,7 @@ cd system_files
 make_link clock.service /etc/systemd/system/
 make_link clock.timer /etc/systemd/system/
 ##enables the timer
-systemctl enable clock.timer
+/usr/bin/sudo systemctl enable clock.timer
 cd ../install_files/
 ##installs all of the dependencies, python3 and python3-pip, and the python dependencies
 install() {
