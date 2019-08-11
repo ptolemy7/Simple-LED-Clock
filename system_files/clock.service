@@ -7,4 +7,4 @@ WantedBy=clock.timer
 [Service]
 Type=simple
 ExecStart=/usr/local/sbin/clock.py
-ExecStop=/usr/local/sbin/clock_off.py
+ExecStop=/usr/local/sbin/clock.py --off
