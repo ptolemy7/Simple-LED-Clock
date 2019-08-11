@@ -189,7 +189,7 @@ def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 
 def off():
 	for x in screen.width:
-		for y in screen.hieght:
+		for y in screen.height:
 			screen.pixel(x,y,0)
 
 go = 0
