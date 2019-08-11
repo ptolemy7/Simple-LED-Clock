@@ -188,7 +188,9 @@ def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 		screen_print(digit(clock[i],1),X[i+2],yy,b)
 
 def off():
-	screen.fill(0)
+	for x in screen.width:
+		for y in screen.hieght:
+			screen.pixel(x,y,0)
 
 go = 0
 #yy is the global y value for the loop coming up
