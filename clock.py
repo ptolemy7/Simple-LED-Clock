@@ -7,6 +7,7 @@ import busio
 import board
 import adafruit_is31fl3731
 import datetime
+import sys
 #The following is to shorten what would be datetime.datetime.now()
 from datetime import datetime
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -173,6 +174,8 @@ def screen_print(num,x,y,b):
 		bit(x-2,y-3,b,0)
 		bit(x,y-3,b,0)
 		bit(x,y-6,b,1)
+
+
 def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 	if i == 0:
 		if ((time_new % 12 == 0) or (time_new == 1)) and ( sec > 59 or sec < 1):
@@ -183,33 +186,42 @@ def to_run_or_not_to_run(time_new,time_old,sec,i,b,X = []):
 	if time_new > time_old :
 		screen_print(digit(clock[i],2),X[i],yy,b)
 		screen_print(digit(clock[i],1),X[i+2],yy,b)
+
+def off():
+	screen.fill(0)
+
 go = 0
 #yy is the global y value for the loop coming up
 yy = 7
-while True:
-	if go == 0:
-		time_old=[-1,-1,-1]
-	else:
-		for i in range(0,3):
-			time_old[i]=clock[i]
-	hr = datetime.now().hour
-	mn = datetime.now().minute
-	sc = datetime.now().second
-	clock=[hr,mn,sc]
-	hr_actual = clock[0]
-	if(clock[0]>time_old[0] or time_old[0]==11):
-		b = bright(clock[0])
-		pm(clock[0],b)
-	clock[0] = hr_display(hr_actual)
-	scounter(clock[2],b)
-#This X list is a list of the x coordinate of the ancor poins for the numbers;
-#they are shuffled in order because ... for some reason that was the only way
-#my 3-AM brain could figure out how to get the loop to loop correctly, so the
-#actual order is descinding from left to right, 15,11,6,2. The y-coordinate is
-#not listed because they will all be the same at 7
-	X=[15,6,11,2]
-	for i in range(0,2):
-		to_run_or_not_to_run(clock[i],time_old[i],clock[2],i,b,X)
-	if(go == 0):
-		go = 1
-	time.sleep(.5)
+
+if sys.argv[0] == "off" :
+	off()
+else:
+
+	while True:
+		if go == 0:
+			time_old=[-1,-1,-1]
+		else:
+			for i in range(0,3):
+				time_old[i]=clock[i]
+		hr = datetime.now().hour
+		mn = datetime.now().minute
+		sc = datetime.now().second
+		clock=[hr,mn,sc]
+		hr_actual = clock[0]
+		if(clock[0]>time_old[0] or time_old[0]==11):
+			b = bright(clock[0])
+			pm(clock[0],b)
+		clock[0] = hr_display(hr_actual)
+		scounter(clock[2],b)
+	#This X list is a list of the x coordinate of the ancor poins for the numbers;
+	#they are shuffled in order because ... for some reason that was the only way
+	#my 3-AM brain could figure out how to get the loop to loop correctly, so the
+	#actual order is descinding from left to right, 15,11,6,2. The y-coordinate is
+	#not listed because they will all be the same at 7
+		X=[15,6,11,2]
+		for i in range(0,2):
+			to_run_or_not_to_run(clock[i],time_old[i],clock[2],i,b,X)
+		if(go == 0):
+			go = 1
+		time.sleep(.5)
