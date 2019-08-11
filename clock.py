@@ -195,7 +195,7 @@ go = 0
 yy = 7
 
 
-if (len(sys.arg) >= 1 and sys.argv[1] == "--off") :
+if (len(sys.argv) >= 1 and sys.argv[1] == "--off") :
 	off()
 else:
 
