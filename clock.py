@@ -4,7 +4,7 @@
 #*should* be able to tweak this a little bit
 import time
 import busio
-import board.py
+import board
 import adafruit_is31fl3731
 import datetime
 #The following is to shorten what would be datetime.datetime.now()
