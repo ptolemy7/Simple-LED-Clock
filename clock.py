@@ -194,7 +194,8 @@ go = 0
 #yy is the global y value for the loop coming up
 yy = 7
 
-if sys.argv[1] == "--off" :
+
+if (len(sys.arg)) >= 1 and sys.argv[1]) == "--off" :
 	off()
 else:
 
