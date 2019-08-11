@@ -2,6 +2,7 @@
 #This was written and designed for a 16x8  adafruit led screen,
 #therefore your mileage may very but if one wanted to, one
 #*should* be able to tweak this a little bit
+import atexit
 import time
 import busio
 import board
@@ -192,6 +193,8 @@ def off():
 		for y in range(screen.height):
 			screen.pixel(x,y,0)
 
+
+atexit.register(off)
 go = 0
 #yy is the global y value for the loop coming up
 yy = 7
@@ -228,3 +231,4 @@ else:
 		if(go == 0):
 			go = 1
 		time.sleep(.5)
+
